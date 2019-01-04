@@ -1,0 +1,30 @@
+{
+    "name": "mindtwo/php-package-creator",
+    "description": "Craft a new PHP package based on thephpleague skeleton repository.",
+    "keywords": ["package-creator","thephpleague","skeleton","php"],
+    "type": "library",
+    "homepage": "https://github.com/mindtwo/wordpress-mindtwo-installer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mindtwo GmbH",
+            "email": "info@mindtwo.de",
+            "homepage": "https://www.mindtwo.de",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mindtwo\\PhpPackageCreator\\": "src/"
+        }
+    },
+    "require": {
+        "php" : "~7.1",
+        "symfony/console": "~2.3|~3.0",
+        "symfony/filesystem": "~2.3|~3.0",
+        "symfony/process": "~2.3|~3.0"
+    },
+    "bin": [
+        "php-package-creator"
+    ]
+}
