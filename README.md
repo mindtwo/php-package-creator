@@ -32,17 +32,17 @@ php-package-creator new test-package
 
 There is only one required argument ans some optional options for the `php-package-creator new` command.
 
-- Argument: `wordpress new folder_name` (Required)
-- Option: `wordpress new folder_name --author_name=John` (Optional)
-- Option: `wordpress new folder_name --author_github_username=john` (Optional)
-- Option: `wordpress new folder_name --author_email=john@doe.com` (Optional)
-- Option: `wordpress new folder_name --author_twitter=john` (Optional)
-- Option: `wordpress new folder_name --author_website=https://example.com` (Optional)
-- Option: `wordpress new folder_name --package_vendor=doe` (Optional)
-- Option: `wordpress new folder_name --package_name=john` (Optional)
-- Option: `wordpress new folder_name --package_description="Example..."` (Optional)
-- Option: `wordpress new folder_name --psr4_namespace=Doe\John` (Optional)
-- Option: `wordpress new folder_name --force` (Optional)
+- Argument: `php-package-creator new folder_name` (Required)
+- Option: `php-package-creator new folder_name --author_name=John` (Optional)
+- Option: `php-package-creator new folder_name --author_github_username=john` (Optional)
+- Option: `php-package-creator new folder_name --author_email=john@doe.com` (Optional)
+- Option: `php-package-creator new folder_name --author_twitter=john` (Optional)
+- Option: `php-package-creator new folder_name --author_website=https://example.com` (Optional)
+- Option: `php-package-creator new folder_name --package_vendor=doe` (Optional)
+- Option: `php-package-creator new folder_name --package_name=john` (Optional)
+- Option: `php-package-creator new folder_name --package_description="Example..."` (Optional)
+- Option: `php-package-creator new folder_name --psr4_namespace=Doe\John` (Optional)
+- Option: `php-package-creator new folder_name --force` (Optional)
 
 ## Change log
 
