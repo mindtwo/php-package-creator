@@ -43,6 +43,7 @@ There is only one required argument ans some optional options for the `php-packa
 - Option: `php-package-creator new folder_name --package_description="Example..."` (Optional)
 - Option: `php-package-creator new folder_name --psr4_namespace=Doe\John` (Optional)
 - Option: `php-package-creator new folder_name --force` (Optional)
+- Option: `php-package-creator new folder_name --laravel` (Optional)
 
 ## Change log
 

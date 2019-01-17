@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\Process;
 
 class NewCommand extends Command
 {
@@ -75,9 +76,58 @@ class NewCommand extends Command
         $this->removeExistingDirectory($input, $output, $input->getOption('force'))
              ->copyProjectStub($input, $output)
              ->setReplacements($input, $output)
+             ->addComposerDeps($input, $output)
              ->cleanup($input, $output);
 
         $output->writeln('<comment>PHP Package is ready! Build something amazing.</comment>');
+    }
+
+
+
+    /**
+     * Get the composer command for the environment.
+     *
+     * @return string
+     */
+    protected function findComposer()
+    {
+        if (file_exists(getcwd().'/composer.phar')) {
+            return '"'.PHP_BINARY.'" composer.phar';
+        }
+
+        return 'composer';
+    }
+
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
+    protected function addComposerDeps(InputInterface $input, OutputInterface $output) {
+        $composer = $this->findComposer();
+
+        $commands = collect([
+            $composer.' require --dev symfony/var-dumper',
+        ])->when($input->getOption('laravel'), function($commands) use($composer) {
+            return $commands->push($composer.' require --dev "orchestra/testbench=~3.0"');
+        });
+
+        if ($input->getOption('no-ansi')) {
+            $commands = array_map(function ($value) {
+                return $value.' --no-ansi';
+            }, $commands);
+        }
+
+        $process = new Process(implode(' && ', $commands), $this->directory, null, null, null);
+
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            $process->setTty(true);
+        }
+
+        $process->run(function ($type, $line) use ($output) {
+            $output->write($line);
+        });
+
+        return $this;
     }
 
     /**
